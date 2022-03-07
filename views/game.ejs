@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lets Play Game Rock Papper Scissors!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link href="css/game.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="judul-utama">
+            <img src="img/less-than-solid.svg" alt="less-than" class="fa-less-than">
+            <img src="img/logo.jpeg" alt="logo" class="logo">
+            <h2>rock papper scissors</h2>
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 player">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>PLAYER 1</h2>
+                        </div>
+                        <div class="col-12">
+                            <!-- <div id="batu" onclick="chooseHand(event)"> -->
+                            <div id="userBatu" class="hand">
+                                <img src="./img/batu.png" alt="Batu" />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <!-- <div id="kertas" onclick="game.play()"> -->
+                            <div id="userKertas" class="hand">
+                                <img src="./img/kertas.png" alt="Kertas" />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div id="userGunting" class="hand">
+                                <img src="./img/gunting.png" alt="Gunting" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="game-result" class="col-sm-4 d-flex align-items-center justify-content-center">
+
+                    <h1 class="result-text">VS</h1>
+
+                    <div class="player-result">COM WIN</div>
+
+                    <div class="image-win"></div>
+                </div>
+
+                <div class="col-sm-4 com">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>COMPUTER</h2>
+                        </div>
+                        <div class="col-12 com-hand">
+                            <div id="comBatu" class="text-black align-bottom hand">
+                                <img src="./img/batu.png" alt="Batu" />
+                            </div>
+                        </div>
+                        <div class="col-12 com-hand">
+                            <div id="comKertas" class="hand">
+                                <img src="./img/kertas.png" alt="Kertas" />
+                            </div>
+                        </div>
+                        <div class="col-12 com-hand">
+                            <div id="comGunting" class="hand">
+                                <img src="./img/gunting.png" alt="Gunting" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center" id="refresh-page">
+                        <img src="./img/refresh.png" alt="Refresh" id="refresh-page" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/game.js"></script>
+    </div>
+</body>
+
+</html>
