@@ -75,7 +75,7 @@ app.post('/signup', (req, res) => {
         password
     })
     users.push(newUser)
-    res.status(201).redirect('/login')
+    res.status(200).redirect('/login')
 })
 
 
