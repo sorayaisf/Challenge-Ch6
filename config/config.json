@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "soraya2305",
+    "database": "ch6_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "soraya2305",
+    "database": "ch6_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "soraya2305",
+    "database": "ch6_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
