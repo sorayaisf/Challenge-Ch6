@@ -180,7 +180,7 @@ app.get('/game', (req, res) => {
 
 
 
-// //404 Page
+// 404 Page
 app.use('/', (req, res) => {
     res.status(404);
     res.send('<h1>404</h1>');
