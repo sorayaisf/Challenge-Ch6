@@ -1,7 +1,6 @@
 //Load the things we need
 const express = require('express');
 const app = express();
-// const port = 8000
 const morgan = require('morgan');
 const {
     sequelize,
@@ -12,11 +11,7 @@ const users = require('./public/db/users.json')
 
 //Set the view engine to ejs
 app.set('view engine', 'ejs');
-
-//Express
 app.use(express.static('public'))
-
-//Logger Middleware
 app.use(morgan('tiny'));
 
 
@@ -24,27 +19,6 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: false
 }))
-
-// Login Page
-app.get('/login', (req, res) => {
-    res.render('login/index', {
-        title: "Login Page",
-    });
-});
-
-app.post('/login', (req, res) => {
-    const {
-        email,
-        password
-    } = req.body
-    for (user of users) {
-        if (user.email === email && user.password === password) {
-            return res.redirect('game')
-        }
-    }
-    res.status(400).render('alert')
-})
-
 
 
 // Index or Home Page
@@ -55,8 +29,7 @@ app.get('/', (req, res) => {
 });
 
 
-//CREATE
-
+//Create
 app.get('/users/create', (req, res) => {
     res.render('create_user');
 });
@@ -92,7 +65,7 @@ app.post('/users/create', (req, res) => {
 });
 
 
-// READ
+// Read
 app.get('/users', (req, res) => {
     UserGame.findAll({
             include: UserGameBiodata,
@@ -106,12 +79,12 @@ app.get('/users', (req, res) => {
             });
         })
         .catch((error) => {
-            console.log('oopps! something wrong', error);
+            console.log('Failed', error);
         });
 });
 
 
-// UPDATE
+// Update
 app.get('/users/update/:id', (req, res) => {
     UserGame.findOne({
         where: {
@@ -148,12 +121,12 @@ app.post('/users/update/:id', (req, res) => {
                     id: req.params.id
                 },
                 include: UserGameBiodata,
-            }).then((user1) => {
+            }).then((newUsers) => {
                 UserGameBiodata.update({
                     name,
                 }, {
                     where: {
-                        id: user1.UserGameBiodatum.id
+                        id: newUsers.UserGameBiodatum.id
                     }
                 });
                 res.status(201);
@@ -164,7 +137,7 @@ app.post('/users/update/:id', (req, res) => {
         });
 });
 
-// DELETE
+// Delete
 app.get('/users/delete/:id', (req, res) => {
     UserGame.destroy({
         where: {
@@ -179,20 +152,26 @@ app.get('/users/delete/:id', (req, res) => {
 });
 
 
+// Login Page
+app.get('/login', (req, res) => {
+    res.render('login/index', {
+        title: "Login Page",
+    });
+});
 
-// // // Users Page
-// app.get('/users', (req, res) => {
-//     console.log(users)
-//     res.status(200).json(users)
-// });
-
-
-//Sign Up Page
-app.get('/signup', (req, res) => {
-    res.render('signup', {
-        title: "Sign Up Page",
-    })
+app.post('/login', (req, res) => {
+    const {
+        email,
+        password
+    } = req.body
+    for (user of users) {
+        if (user.email === email && user.password === password) {
+            return res.redirect('/users')
+        }
+    }
+    res.status(400).render('alert')
 })
+
 
 //Playing Game
 app.get('/game', (req, res) => {
@@ -201,46 +180,11 @@ app.get('/game', (req, res) => {
 
 
 
-
-//Sign Up to Login Page
-app.get('/signup', (req, res) => {
-    res.render('login/index', {
-        title: "Login Page",
-    });
-});
-
-app.post('/signup', (req, res) => {
-    const {
-        email,
-        password
-    } = req.body
-
-    const newUser = ({
-        email,
-        password
-    })
-    users.push(newUser)
-    res.status(200).redirect('/login')
-})
-
-
-
-
-// //Play Now
-// app.get('/playnow', (req, res) => {
-//     res.render('/login'), {
-
-//     }
-// })
-
 // //404 Page
 app.use('/', (req, res) => {
     res.status(404);
     res.send('<h1>404</h1>');
 });
-
-
-
 
 
 app.listen({
