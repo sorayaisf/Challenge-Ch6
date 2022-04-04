@@ -31,7 +31,9 @@ app.get('/', (req, res) => {
 
 //Create
 app.get('/users/create', (req, res) => {
-    res.render('create_user');
+    res.render('create_user', {
+        title: "Create User"
+    });
 });
 app.post('/users/create', (req, res) => {
     const {
@@ -46,7 +48,6 @@ app.post('/users/create', (req, res) => {
         username,
         password,
         name
-
     })
 
     UserGame.create({
@@ -58,9 +59,7 @@ app.post('/users/create', (req, res) => {
             name,
             userId: newUser.id,
         });
-        res.status(201).json((error) => {
-            res.status(422).json("Can't create user", error);
-        });
+        res.status(201).redirect(('/users'));
     });
 });
 
@@ -166,7 +165,7 @@ app.post('/login', (req, res) => {
     } = req.body
     for (user of users) {
         if (user.email === email && user.password === password) {
-            return res.redirect('/users')
+            return res.redirect('game')
         }
     }
     res.status(400).render('alert')

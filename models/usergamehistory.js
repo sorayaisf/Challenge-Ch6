@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   UserGameHistory.init({
     result: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'UserGameHistory',
