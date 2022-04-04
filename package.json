@@ -1,11 +1,17 @@
 {
-  "name": "ch-5",
+  "name": "ch-6",
   "version": "1.0.0",
-  "description": "challenge ch 5",
+  "description": "challenge ch 6",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:create": "npx sequelize-cli db:create",
+    "model-gen:usergame": "npx sequelize-cli model:generate --name UserGame --attributes username:string,password:string",
+    "model-gen:usergamebiodata": "npx sequelize-cli model:generate --name UserGameBiodata --attributes name:string",
+    "model-gen:usergamehistory": "npx sequelize-cli model:generate --name UserGameHistory --attributes result:string",
+    "db:migrate": "npx sequelize-cli db:migrate"
+
   },
   "author": "soraya",
   "license": "ISC",
