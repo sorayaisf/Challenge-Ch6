@@ -22,7 +22,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Email</th>
                     <th scope="col">Username</th>
-                    <th scope="col">Password</th>
+                    <!-- <th scope="col">Password</th> -->
                     <th scope="col">Name</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -33,7 +33,7 @@
                     <th scope="row"><%= el.id %></th>
                     <td><%= el.email %></td>
                     <td><%= el.username %></td>
-                    <td><%= el.password %></td>
+
                     <td><%= el.UserGameBiodatum.name %></td>
                     <td>
                         <a class="btn btn-success btn-edit" href="/users/update/<%= el.id %>">Edit</a>
