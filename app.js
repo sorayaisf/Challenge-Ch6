@@ -3,6 +3,10 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const {
+    user
+} = require('pg/lib/defaults');
+const userController = require('./controllers/userController');
+const {
     sequelize,
 } = require('./models')
 const users = require('./public/db/users.json')
@@ -18,51 +22,27 @@ app.use(express.urlencoded({
     extended: false
 }))
 
-
 const game = require("./routes/game")
 
 app.use(game)
 
+
 // Index or Home Page
-app.get('/', (req, res) => {
-    res.render('index', {
-        title: "Home Page",
-    });
-});
+app.get('/', userController.homeRender)
 
 
 // Login Page
-app.get('/login', (req, res) => {
-    res.render('login/index', {
-        title: "Login Page",
-    });
-});
-
-app.post('/login', (req, res) => {
-    const {
-        email,
-        password
-    } = req.body
-    for (user of users) {
-        if (user.email === email && user.password === password) {
-            return res.redirect('game')
-        }
-    }
-    res.status(400).render('alert')
-})
+app.get('/login', userController.loginGet)
 
 
 //Playing Game
-app.get('/game', (req, res) => {
-    res.render('game', {})
-})
+app.get('/game', userController.gameRender)
 
 
 // 404 Page
-app.use('/', (req, res) => {
-    res.status(404);
-    res.send('<h1>404</h1>');
-});
+app.use('/', userController.errorRender)
+
+
 
 app.listen({
     port: 3000

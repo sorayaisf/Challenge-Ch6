@@ -14,6 +14,13 @@ const comGunting = document.getElementById("comGunting");
 
 // REFRESH
 const refreshPage = document.getElementById("refresh-page");
+refreshPage.addEventListener('click', function () {
+    if (confirm("Play Again??")) {
+        location.reload()
+    }
+})
+
+var Enabled = true;
 
 
 const hands = document.querySelectorAll(".hand");
@@ -54,45 +61,57 @@ const computer = () => {
 
 
 userKertas.onclick = () => {
-    let resultPlayer = userKertas.id;
-    console.log("kertas di klik");
-    removeAll();
-    userKertas.classList.add("highlight");
-    let resultCom = computer();
-    document.querySelector("#game-result .player-result").style.display = "block";
-    document.querySelector("#game-result .result-text").remove();
-    document.querySelector("#game-result .player-result").textContent =
-        getResult(resultCom, resultPlayer);
+
+    if (Enabled == true) {
+        let resultPlayer = userKertas.id;
+        console.log("kertas di klik");
+        removeAll();
+        userKertas.classList.add("highlight");
+        let resultCom = computer();
+        document.querySelector("#game-result .player-result").style.display = "block";
+        document.querySelector("#game-result .result-text").remove();
+        document.querySelector("#game-result .player-result").textContent =
+            getResult(resultCom, resultPlayer);
+
+        Enabled = false;
+
+    }
 }
 
 userBatu.onclick = () => {
-    let resultPlayer = userBatu.id;
-    console.log("batu di klik");
-    removeAll();
-    userBatu.classList.add("highlight");
-    let resultCom = computer();
-    document.querySelector("#game-result .player-result").style.display = "block";
-    document.querySelector("#game-result .result-text").remove();
-    document.querySelector("#game-result .player-result").textContent =
-        getResult(resultCom, resultPlayer);
+
+    if (Enabled == true) {
+        let resultPlayer = userBatu.id;
+        console.log("batu di klik");
+        removeAll();
+        userBatu.classList.add("highlight");
+        let resultCom = computer();
+        document.querySelector("#game-result .player-result").style.display = "block";
+        document.querySelector("#game-result .result-text").remove();
+        document.querySelector("#game-result .player-result").textContent =
+            getResult(resultCom, resultPlayer);
+
+        Enabled = false;
+    }
 };
 
 userGunting.onclick = () => {
-    let resultPlayer = userGunting.id;
-    console.log("gunting di klik");
-    removeAll();
-    userGunting.classList.add("highlight");
-    let resultCom = computer();
-    document.querySelector("#game-result .player-result").style.display = "block";
-    document.querySelector("#game-result .result-text").remove();
-    document.querySelector("#game-result .player-result").textContent =
-        getResult(resultCom, resultPlayer);
+    if (Enabled == true) {
+        let resultPlayer = userGunting.id;
+        console.log("gunting di klik");
+        removeAll();
+        userGunting.classList.add("highlight");
+        let resultCom = computer();
+        document.querySelector("#game-result .player-result").style.display = "block";
+        document.querySelector("#game-result .result-text").remove();
+        document.querySelector("#game-result .player-result").textContent =
+            getResult(resultCom, resultPlayer);
+
+        Enabled = false;
+    }
 };
 
-refreshPage.onclick = () => {
-    console.log('refresh');
-    document.location.reload(true);
-}
+
 
 
 function getResult(resultCom, resultPlayer) {

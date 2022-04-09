@@ -15,6 +15,7 @@ router.get('/users/create', (req, res) => {
         title: "Create User"
     });
 });
+
 router.post('/users/create', (req, res) => {
     const {
         email,
@@ -23,12 +24,6 @@ router.post('/users/create', (req, res) => {
         name
     } = req.body;
 
-    console.log({
-        email,
-        username,
-        password,
-        name
-    })
 
     UserGame.create({
         email,
@@ -45,6 +40,31 @@ router.post('/users/create', (req, res) => {
 });
 
 
+//Login
+router.post('/login', (req, res) => {
+    const {
+        email,
+        password
+    } = req.body
+
+    const userFind = UserGame.findOne({
+        where: {
+            email,
+            password
+        }
+    })
+
+    if (userFind) {
+        res.redirect(`/game?username=${userFind.username}`)
+        console.log(userFind.username + userFind.id)
+    } else {
+        res.status(404).render('alert')
+        console.log("Failed!")
+    }
+
+})
+
+
 // Read
 router.get('/users', (req, res) => {
     UserGame.findAll({
@@ -55,7 +75,8 @@ router.get('/users', (req, res) => {
                 data
             })
             res.render('game/users', {
-                data
+                data,
+                title: "List of Users"
             });
         })
         .catch((error) => {
