@@ -7,7 +7,7 @@ const userController = require('./controllers/userController');
 const {
     sequelize,
 } = require('./models')
-const users = require('./public/db/users.json')
+
 
 //Set the view engine to ejs
 app.set('view engine', 'ejs');
