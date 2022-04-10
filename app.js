@@ -2,9 +2,7 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const {
-    user
-} = require('pg/lib/defaults');
+
 const userController = require('./controllers/userController');
 const {
     sequelize,
